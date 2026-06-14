@@ -9,6 +9,7 @@ class Settings(BaseSettings):
     base_url: Optional[str] = None
     base_url_docs: str = "http://localhost:8000/openapi.json"
     mcp_url: str = "http://localhost:8001/mcp"
+    mcp_server_label: str = "faq"
     openai_key: Optional[str] = None
     litellm_url: Optional[str] = None
     mcp_port: int = 8001

@@ -11,7 +11,7 @@ class MCPTool(BaseModel):
 
 class ChatRequest(BaseModel):
     message: str
-    model: str = "claude-haiku-4-5-20251001"
+    model: str = "claude-haiku-4-5"
     allowed_tools: list[str] | None = None
 
 

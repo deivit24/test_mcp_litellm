@@ -1,18 +1,16 @@
 import httpx
 import os
 import random
-import uvicorn
 from fastmcp import FastMCP
 from core.settings import settings
+from logging import getLogger
+
+logger = getLogger(__file__)
 
 if not settings.base_url:
     raise ValueError("BASE_URL is not set")
 if not settings.base_url_docs:
     raise ValueError("BASE_URL_DOCS is not set")
-
-print(f"BASE_URL:      {settings.base_url}")
-print(f"BASE_URL_DOCS: {settings.base_url_docs}")
-print(f"MCP_URL:       {settings.mcp_url}")
 
 client = httpx.AsyncClient(base_url=settings.base_url)
 
@@ -35,5 +33,6 @@ def roll_dice(n_dice: int) -> list[int]:
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8001))
-    print(f"Starting MCP server on 0.0.0.0:{port}")
+    message = f"Starting MCP server on 0.0.0.0:{port}"
+    logger.info(message)
     mcp.run(transport="streamable-http", host="0.0.0.0", port=port)

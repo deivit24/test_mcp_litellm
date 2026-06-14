@@ -4,8 +4,6 @@ from core.settings import settings
 
 
 class LLMService:
-    _MCP_SERVER_LABEL = "faq"
-
     def __init__(self) -> None:
         self._client = AsyncOpenAI(
             api_key=settings.openai_key,
@@ -14,7 +12,7 @@ class LLMService:
 
     async def chat(self, request: ChatRequest) -> ChatResponse:
         tool = MCPTool(
-            server_label=self._MCP_SERVER_LABEL,
+            server_label=settings.mcp_server_label,
             allowed_tools=request.allowed_tools,
         )
 
