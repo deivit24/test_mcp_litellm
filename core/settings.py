@@ -11,6 +11,7 @@ class Settings(BaseSettings):
     mcp_url: str = "http://localhost:8001/mcp"
     openai_key: Optional[str] = None
     litellm_url: Optional[str] = None
+    mcp_port: int = 8001
 
 
 settings = Settings()

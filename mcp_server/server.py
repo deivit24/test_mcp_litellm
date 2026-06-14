@@ -1,5 +1,7 @@
 import httpx
+import os
 import random
+import uvicorn
 from fastmcp import FastMCP
 from core.settings import settings
 
@@ -32,4 +34,6 @@ def roll_dice(n_dice: int) -> list[int]:
 
 
 if __name__ == "__main__":
-    mcp.run(transport="streamable-http", port=8001)
+    port = int(os.environ.get("PORT", 8001))
+    print(f"Starting MCP server on 0.0.0.0:{port}")
+    mcp.run(transport="streamable-http", host="0.0.0.0", port=port)
